@@ -1,0 +1,1 @@
+The readme for hw 2 which I will fill as I learn how to actually run this

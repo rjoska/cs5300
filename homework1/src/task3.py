@@ -22,6 +22,7 @@ def what_type_of_num(z):
         #print("is negative ", x)
         return "negative"
 
+#function to find the first 10 primes
 def first_10_primes():
     count = 0
     start = 0
@@ -35,6 +36,7 @@ def first_10_primes():
         start = start + 1
     return prime_list
         
+#the while loop for requirement
 def while_sum():
     while_result = 0
     while_start = 1
@@ -44,6 +46,7 @@ def while_sum():
     #print(while_result) #test print
     return while_result
 
+#the main to run all the code when just running the python file
 def main(x):
     pos_or_neg = what_type_of_num(x)
     list_of_primes = first_10_primes()

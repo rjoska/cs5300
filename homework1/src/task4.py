@@ -1,9 +1,11 @@
+# a func to calculate the discount. Simply takes the percent and makes it a decimal then finds the dicount price and calcs new price
 def calculate_discount(price, discount):
     disc_frac = discount/100
     off_money = price * disc_frac
     new_price = price - off_money
     return new_price
 
+#main to run all 4 cases such as int price, int dicount, float price, float discount
 def main(x,y,z,a):
     print(calculate_discount(x,y))
     print(calculate_discount(x,z))
