@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>My Bookings</h1>
+
+    <ul>
+      {% for b in bookings %}
+        <li>
+          <strong>{{ b.seat.showing.movie.title }}</strong>
+          — {{ b.seat.showing.start_time }}
+          — Seat {{ b.seat.seat_number }}
+        </li>
+      {% empty %}
+        <li>No bookings yet.</li>
+      {% endfor %}
+    </ul>
+    
+
+</body>
+</html>

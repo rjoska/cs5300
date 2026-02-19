@@ -25,7 +25,18 @@ SECRET_KEY = 'django-insecure-$oj&31khs&j#fz-pzgc(_l$&jou3466r!i0m)hpfk!*a@0ah!a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#test fix
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = ["https://editor-rjoska-21.devedu.io"]
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
+ALLOWED_HOSTS = [
+    'editor-rjoska-21.devedu.io',
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -38,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookings',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +81,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'movie_theater_booking.wsgi.application'
 
+#Added rest settings (ChatGPT told me to add these when I was unable to connect due to wanting a password)
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+}
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

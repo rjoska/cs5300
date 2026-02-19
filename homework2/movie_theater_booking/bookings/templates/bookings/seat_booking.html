@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Seats</h1>
+
+<ul>
+  {% for seat in seats %}
+    {{ seat.seat_number }}
+    {% if seat.booking_status %}
+        <p style="color:red;">Booked</p>
+    {% else %}
+        <a href="/proxy/8000{% url 'book_seat' seat.id %}">Book</a>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% if not user.is_authenticated %}
+<p>
+  <a href="/proxy/8000/accounts/login/">Log in</a> |
+  <a href="/proxy/8000/signup/">Create account</a>
+</p>
+{% endif %}
+
+</body>
+</html>

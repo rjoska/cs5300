@@ -1,0 +1,15 @@
+<h1>Showings</h1>
+<p>Times shown are start times.</p>
+<ul>
+  {% for showing in showings %}
+  <p>
+  <a href="/proxy/8000{% url 'seat_list' showing.id %}">
+    {{ showing.start_time }}
+  </a>
+  </p>
+  {% empty %}
+    <li>No showings found for this movie.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'movie_list' %}">Back to movies</a>

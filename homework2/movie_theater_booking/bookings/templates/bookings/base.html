@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>COOL THEATER BOOKING</title>
+    <style>
+    nav {
+        background-color: #371313;
+        padding: 15px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .container {
+        padding: 30px;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="/proxy/8000/">Home</a>
+        <a href="/proxy/8000/movies-page/">Movies</a>
+        <a href="/proxy/8000/bookings-page/">My Bookings</a>
+    
+        {% if user.is_authenticated %}
+            <span style="color: white;">Hello {{ user.username }}!</span>
+            <a href="/proxy/8000/accounts/logout/">Logout</a>
+        {% else %}
+            <a href="/proxy/8000/accounts/login/">Login</a>
+            <a href="/proxy/8000/signup/">Sign Up</a>
+        {% endif %}
+    </nav>
+    
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    </body>
+</html>
