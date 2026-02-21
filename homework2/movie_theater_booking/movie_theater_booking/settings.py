@@ -26,18 +26,27 @@ SECRET_KEY = 'django-insecure-$oj&31khs&j#fz-pzgc(_l$&jou3466r!i0m)hpfk!*a@0ah!a
 DEBUG = True
 
 #test fix
+'''
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = ["https://editor-rjoska-21.devedu.io"]
-LOGIN_URL = '/accounts/login/'
+'''
+LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = '/'
 
+
 ALLOWED_HOSTS = [
+    "app-rjoska-21.devedu.io",
     'editor-rjoska-21.devedu.io',
     '127.0.0.1',
     'localhost',
 ]
 
+# I saw that I may need to add trusted origins for posting to work (ChatGPT told me that this might be an issue, but I made the file)
+CSRF_TRUSTED_ORIGINS = [
+    "https://app-rjoska-21.devedu.io",
+    "https://editor-rjoska-21.devedu.io",
+]
 
 # Application definition
 

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends "bookings/base.html" %}
+{% block content %}
 <html>
 <body>
     <h1>Seats</h1>
@@ -9,16 +11,17 @@
     {% if seat.booking_status %}
         <p style="color:red;">Booked</p>
     {% else %}
-        <a href="/proxy/8000{% url 'book_seat' seat.id %}">Book</a>
+        <a href="{% url 'book_seat' seat.id %}">Book</a>
     {% endif %}
   {% endfor %}
 </ul>
 {% if not user.is_authenticated %}
 <p>
-  <a href="/proxy/8000/accounts/login/">Log in</a> |
-  <a href="/proxy/8000/signup/">Create account</a>
+  <a href="/accounts/login/">Log in</a> |
+  <a href="/signup/">Create account</a>
 </p>
 {% endif %}
 
 </body>
 </html>
+{% endblock %}

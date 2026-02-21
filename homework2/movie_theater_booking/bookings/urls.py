@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 # I was told to make this file by ChatGPT to help with making URLS that are descriptive
-#ChatGPT helped me make this first two example lines, but the others were made by me
+#ChatGPT helped me make the movies/id/seats line as I was unsure how to reference an id from the database
 urlpatterns = [
     path('', views.home, name='home'),
     path('movies-page/', views.movie_list, name='movie_list'),

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends "bookings/base.html" %}
+{% block content %}
 <html>
 <body>
 
@@ -7,7 +9,7 @@
 
 {% for movie in movies %}
   <p>
-    <a href="/proxy/8000{% url 'showing_list' movie.id %}">{{ movie.title }}</a>
+    <a href="{% url 'showing_list' movie.id %}">{{ movie.title }}</a>
   </p>
 {% empty %}
     <p>No movies available.</p>
@@ -15,3 +17,4 @@
 
 </body>
 </html>
+{% endblock %}

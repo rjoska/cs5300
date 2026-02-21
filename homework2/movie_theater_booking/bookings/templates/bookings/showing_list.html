@@ -1,9 +1,15 @@
+<!DOCTYPE html>
+{% extends "bookings/base.html" %}
+{% block content %}
+<html>
+<body>
+
 <h1>Showings</h1>
 <p>Times shown are start times.</p>
 <ul>
   {% for showing in showings %}
   <p>
-  <a href="/proxy/8000{% url 'seat_list' showing.id %}">
+    <a href="{% url 'seat_list' showing.id %}">
     {{ showing.start_time }}
   </a>
   </p>
@@ -13,3 +19,7 @@
 </ul>
 
 <a href="{% url 'movie_list' %}">Back to movies</a>
+
+</body>
+</html>
+{% endblock %}
