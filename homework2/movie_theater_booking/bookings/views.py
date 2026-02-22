@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, get_object_or_404
 from django.utils import timezone
+from collections import defaultdict
+import re
 
 
 # Create your views here.
@@ -53,13 +55,33 @@ def movie_list(request):
     movies = Movie.objects.all()
     return render(request, 'bookings/movie_list.html', {'movies': movies})
 
+#ChatGPT made this. I am learning a lot about render, but man am I struggling to find the resources.
 def showing_list(request, movie_id):
+    movie = Movie.objects.get(id=movie_id)
     showings = Showing.objects.filter(movie_id=movie_id)
-    return render(request, 'bookings/showing_list.html', {'showings': showings})
 
+    return render(
+        request,
+        'bookings/showing_list.html',
+        {
+            'movie': movie,
+            'showings': showings
+        }
+    )
+
+# I made this one following the example chatGPT made me above. Man any change I want on the page must be made here
 def seat_list(request, showing_id):
+    showing = get_object_or_404(Showing, id=showing_id)
     seats = Seat.objects.filter(showing_id=showing_id)
-    return render(request, 'bookings/seat_booking.html', {'seats': seats})
+
+    return render(
+        request,
+        'bookings/seat_booking.html',
+        {
+            'seats': seats,
+            'showing': showing
+        }
+    )
 
 
 @login_required
@@ -98,3 +120,30 @@ def book_seat(request, seat_id):
     seat.save()
 
     return redirect('booking_history')
+
+# This is to help with rendering all the seats ChatGPT helped me make this. I made some parts but the final product was all managed by ChatGPT
+def seat_list(request, showing_id):
+    seats = Seat.objects.filter(showing_id=showing_id)
+
+    # ChatGPT made this as regular expressions are something I have never worked with in python
+    def parse_seat(seat_num: str):
+        match = re.match(r"^([A-Za-z]+)(\d+)$", seat_num.strip())
+        if not match:
+            # fallback for weird seat labels
+            return (seat_num, 0)
+        row = match.group(1).upper()
+        num = int(match.group(2))
+        return (row, num)
+
+    seat_rows = defaultdict(list)
+
+    for seat in seats:
+        row, num = parse_seat(seat.seat_number)
+        seat_rows[row].append((num, seat))
+    
+    ordered_rows = []
+    for row in sorted(seat_rows.keys()):
+        ordered_seats = [seat for (num, seat) in sorted(seat_rows[row], key=lambda x: x[0])]
+        ordered_rows.append((row, ordered_seats))
+
+    return render(request, "bookings/seat_booking.html", {"seat_rows": ordered_rows})

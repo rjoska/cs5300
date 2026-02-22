@@ -9,7 +9,7 @@
 
 {% for movie in movies %}
   <p>
-    <a href="{% url 'showing_list' movie.id %}">{{ movie.title }}</a>
+    <a href="{% url 'showing_list' movie.id %}" class="btn btn-primary">{{ movie.title }}</a>
   </p>
 {% empty %}
     <p>No movies available.</p>

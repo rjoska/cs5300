@@ -4,17 +4,51 @@
 <html>
 <body>
     <h1>Seats</h1>
+    <style>
+      .seat-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .row-label {
+        width: 25px;
+      }
+      .seat {
+        width: 45px;
+        height: 45px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid #000000;
+      }
+      .seat-available {
+        background: #04ff92;
+      }
+      .seat-booked {
+        background: #000000;
+        color: #686868;
+        pointer-events: none;
+      }
+    </style>
 
-<ul>
-  {% for seat in seats %}
-    {{ seat.seat_number }}
-    {% if seat.booking_status %}
-        <p style="color:red;">Booked</p>
-    {% else %}
-        <a href="{% url 'book_seat' seat.id %}">Book</a>
-    {% endif %}
-  {% endfor %}
-</ul>
+{% for row, seats in seat_rows %}
+  <div class="seat-row">
+    <div class="row-label">{{ row }}</div>
+
+    {% for seat in seats %}
+      {% if seat.booking_status %}
+        <span class="seat seat-booked">{{ seat.seat_number }}</span>
+      {% else %}
+        <a class="seat seat-available" href="{% url 'book_seat' seat.id %}">
+          {{ seat.seat_number }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}
+
 {% if not user.is_authenticated %}
 <p>
   <a href="/accounts/login/">Log in</a> |
@@ -22,6 +56,7 @@
 </p>
 {% endif %}
 
+<a href="{% url 'movie_list' %}" class="btn btn-secondary">Back to movies</a>
 </body>
 </html>
 {% endblock %}

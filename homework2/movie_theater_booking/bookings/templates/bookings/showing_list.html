@@ -4,12 +4,13 @@
 <html>
 <body>
 
-<h1>Showings</h1>
+  <h1>Showings for {{ movie.title }}</h1>
+
 <p>Times shown are start times.</p>
 <ul>
   {% for showing in showings %}
   <p>
-    <a href="{% url 'seat_list' showing.id %}">
+    <a href="{% url 'seat_list' showing.id %}" class="btn btn-primary">
     {{ showing.start_time }}
   </a>
   </p>
@@ -18,7 +19,7 @@
   {% endfor %}
 </ul>
 
-<a href="{% url 'movie_list' %}">Back to movies</a>
+<a href="{% url 'movie_list' %}" class="btn btn-secondary">Back to movies</a>
 
 </body>
 </html>
