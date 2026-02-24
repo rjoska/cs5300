@@ -90,14 +90,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'movie_theater_booking.wsgi.application'
 
-#Added rest settings (ChatGPT told me to add these when I was unable to connect due to wanting a password)
+#Added rest settings (ChatGPT told me to add the default_perm)
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
 }
-
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 

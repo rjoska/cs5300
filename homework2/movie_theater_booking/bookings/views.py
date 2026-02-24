@@ -47,7 +47,7 @@ class BookingViewSet(viewsets.ModelViewSet):
         seat.booking_status = True
         seat.save()
 
-# ChatGPT also suggested making these for later. (It made the movie_list and home, I did the others)
+# I followed the Django tutorial to see the basic layout for these
 def home(request):
     return render(request, 'bookings/home.html')
 

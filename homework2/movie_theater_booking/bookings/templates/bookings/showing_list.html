@@ -6,18 +6,20 @@
 
   <h1>Showings for {{ movie.title }}</h1>
 
-<p>Times shown are start times.</p>
-<ul>
-  {% for showing in showings %}
-  <p>
-    <a href="{% url 'seat_list' showing.id %}" class="btn btn-primary">
-    {{ showing.start_time }}
-  </a>
-  </p>
-  {% empty %}
-    <li>No showings found for this movie.</li>
-  {% endfor %}
-</ul>
+<div class="card mb-4" style="width: 18rem;" >
+  <div class="card-header">
+    Start times are in Mountain Time
+  </div>
+  <ul class="list-group list-group-flush">
+    {% for showing in showings %}
+      <a class="list-group-item" href="{% url 'seat_list' showing.id %}">
+      {{ showing.start_time }}
+      </a>
+    {% empty %}
+      <li>No showings found for this movie.</li>
+    {% endfor %}
+  </ul>
+</div>
 
 <a href="{% url 'movie_list' %}" class="btn btn-secondary">Back to movies</a>
 
