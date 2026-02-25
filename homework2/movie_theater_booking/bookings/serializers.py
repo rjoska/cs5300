@@ -18,6 +18,7 @@ class SeatSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source="user.id") # This was suggested by ChatGPT to help make POST testing simpler
     class Meta:
         model = Booking
         fields = '__all__'
