@@ -20,6 +20,7 @@ source homework2/bin/activate
 cd cs5300
 cd homework2
 cd movie_theater_booking
-python3 manage.py test 
+python3 manage.py test (runs both unit and integration tests from tests.py)
+behave (runs the behave tests)
 
 HOW TO RUN ON RENDER:

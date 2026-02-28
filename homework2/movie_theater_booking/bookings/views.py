@@ -39,7 +39,7 @@ class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
-        return Booking.objects.filter(user=self.request.user) #check if the use is the same as the self.user
+        return Booking.objects.filter(user=self.request.user) #check if the user is the same as the self.user
     # ChatGPT made this as I would not have thought that I would need to update the booking here
     def perform_create(self, serializer):
         booking = serializer.save(user=self.request.user)

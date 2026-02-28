@@ -41,7 +41,11 @@
       {% if seat.booking_status %}
         <span class="seat seat-booked">{{ seat.seat_number }}</span>
       {% else %}
-        <a class="seat seat-available" href="{% url 'book_seat' seat.id %}">
+        <a
+          class="seat seat-available"
+          href="{% url 'book_seat' seat.id %}"
+          onclick="return confirm('Book seat {{ seat.seat_number }}?')"
+        >
           {{ seat.seat_number }}
         </a>
       {% endif %}
