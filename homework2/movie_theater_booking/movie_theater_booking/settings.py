@@ -38,6 +38,7 @@ LOGIN_REDIRECT_URL = '/'
 ALLOWED_HOSTS = [
     "app-rjoska-21.devedu.io",
     'editor-rjoska-21.devedu.io',
+    "movie-theater-booking-hefq.onrender.com",
     '127.0.0.1',
     'localhost',
 ]
