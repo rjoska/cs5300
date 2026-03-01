@@ -10,3 +10,6 @@ python manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
 python manage.py migrate
+
+# create superuser if env vars exist (won’t error if it already exists)
+python manage.py createsuperuser --noinput || true
