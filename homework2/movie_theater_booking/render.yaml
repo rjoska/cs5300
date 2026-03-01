@@ -9,7 +9,7 @@ services:
     plan: free
     name: movie-theater-booking
     runtime: python
-    buildCommand: "./build.sh"
+    buildCommand: "cd cs5300/homework2/movie_theater_booking && ./build.sh"
     startCommand: "gunicorn movie_theater_booking.wsgi:application"
     envVars:
       - key: DATABASE_URL
