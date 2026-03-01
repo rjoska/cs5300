@@ -24,3 +24,8 @@ python3 manage.py test (runs both unit and integration tests from tests.py)
 behave (runs the behave tests)
 
 HOW TO RUN ON RENDER:
+Go to https://movie-theater-booking-hefq.onrender.com/
+Check it out
+If movies or whatever are not loading or it says no movies in the database you can add them as an admin
+Username: Admin1
+Password: 12Convoy67
