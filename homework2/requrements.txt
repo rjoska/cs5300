@@ -1,4 +1,0 @@
-python3
-Django
-Behave (pip install behave behave-django)
-Pytest
