@@ -16,7 +16,7 @@ Features include the movies tab which shows movies, then showings, then seats, a
 
 HOW TO RUN TESTS:
 Follow these commands
-source homework2/bin/activate
+source homework2/bin/activate (example source me sure you follow requrements)
 cd cs5300
 cd homework2
 cd movie_theater_booking
